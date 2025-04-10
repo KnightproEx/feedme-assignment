@@ -1,0 +1,10 @@
+name: feedme-assignment
+services:
+  redis:
+    container_name: feedme-assignment-redis-1
+    image: redis:latest
+    restart: unless-stopped
+    ports:
+      - 6379:6379
+    volumes:
+      - .data/redis:/root/redis
