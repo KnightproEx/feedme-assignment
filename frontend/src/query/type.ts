@@ -13,7 +13,8 @@ export interface ErrorResponse extends ApiResponse {
 
 export enum OrderStatus {
 	PENDING = 0,
-	COMPLETED = 1,
+	PREPARING = 1,
+	COMPLETED = 2,
 }
 
 export type Order = {

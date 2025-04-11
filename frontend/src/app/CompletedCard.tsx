@@ -9,7 +9,7 @@ import { useGetOrders } from "@/query/get-orders";
 import { OrderStatus } from "@/query/type";
 
 const CompletedCard = () => {
-	const { data } = useGetOrders();
+	const { data } = useGetOrders(true);
 
 	return (
 		<Card className="w-[350px]">

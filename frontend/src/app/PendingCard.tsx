@@ -19,11 +19,16 @@ const PendingCard = () => {
 			</CardHeader>
 			<CardContent>
 				{data
-					?.filter((e) => e.status === OrderStatus.PENDING)
+					?.filter(
+						(e) =>
+							e.status === OrderStatus.PENDING ||
+							e.status === OrderStatus.PREPARING,
+					)
 					?.map((e) => (
 						<p key={e.id}>
 							{e.id}
 							{e.isVip && " VIP"}
+							{e.status === OrderStatus.PREPARING && " (Preparing)"}
 						</p>
 					))}
 			</CardContent>

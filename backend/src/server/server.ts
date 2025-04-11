@@ -20,22 +20,27 @@ orderGroup
 		res.send({ success: true, data: { orders } });
 	})
 	.post(async (req, res) => {
-		const isVip = req.body.is_vip;
+		const isVip = req.body?.is_vip ?? false;
 		const order = await addOrder(isVip);
 		res.send({ success: true, data: { order } });
 	});
+
+orderGroup.get("/completed", (_, res) => {
+	const orders = getOrders(true);
+	res.send({ success: true, data: { orders } });
+});
 
 botGroup
 	.get("/count", (_, res) => {
 		const count = getBotCount();
 		res.send({ success: true, data: { count } });
 	})
-	.post("/increase-bot", (_, res) => {
-		increaseBot();
+	.post("/increase-bot", async (_, res) => {
+		await increaseBot();
 		res.send({ success: true });
 	})
-	.post("/decrease-bot", (_, res) => {
-		decreaseBot();
+	.post("/decrease-bot", async (_, res) => {
+		await decreaseBot();
 		res.send({ success: true });
 	});
 
@@ -46,6 +51,6 @@ const errorHandler: ErrorRequestHandler = (_, __, res, ___) => {
 api.use("/orders", orderGroup);
 api.use("/bots", botGroup);
 
-api.use(errorHandler);
+// api.use(errorHandler);
 
 export default server;

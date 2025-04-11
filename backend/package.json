@@ -5,6 +5,7 @@
 	"main": "index.js",
 	"scripts": {
 		"dev": "tsx --watch src/index.ts",
+		"build": "esbuild ./src/index.ts --platform=node --bundle --outfile=./build/index.js",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"keywords": [],
@@ -22,6 +23,7 @@
 		"@types/cors": "^2.8.17",
 		"@types/express": "^5.0.1",
 		"@types/node": "^22.14.0",
+		"esbuild": "^0.25.2",
 		"tsx": "^4.19.3",
 		"typescript": "^5.8.3"
 	}
