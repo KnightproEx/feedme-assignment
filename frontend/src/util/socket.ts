@@ -1,3 +1,5 @@
 import { io } from "socket.io-client";
 
-export const socket = io("http://localhost:3001/");
+const url = import.meta.env.VITE_API_URL ?? "http://localhost:3000";
+
+export const socket = io(url);

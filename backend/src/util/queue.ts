@@ -1,5 +1,7 @@
 import IORedis from "ioredis";
 
-export const redisConnection = new IORedis("redis://localhost:6379", {
+const path = process.env.REDIS_CONNECTION ?? "redis://localhost:6379";
+
+export const redisConnection = new IORedis(path, {
 	maxRetriesPerRequest: null,
 });

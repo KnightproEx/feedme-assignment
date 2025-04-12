@@ -1,0 +1,33 @@
+name: feedme-assignment
+services:
+  frontend:
+    container_name: feedme-assignment-frontend-1
+    build:
+      dockerfile: Dockerfile
+      context: ./frontend
+    environment:
+      VITE_API_URL: ${FRONTEND_API_URL}
+    ports:
+      - 5173:5173
+    restart: unless-stopped
+
+  backend:
+    container_name: feedme-assignment-backend-1
+    build:
+      dockerfile: Dockerfile
+      context: ./backend
+    environment:
+      REDIS_CONNECTION: ${BACKEND_REDIS_CONNECTION}
+      PORT: ${BACKEND_PORT}
+    ports:
+      - 3000:3000
+    restart: unless-stopped
+
+  redis:
+    container_name: feedme-assignment-redis-1
+    image: redis:latest
+    restart: unless-stopped
+    ports:
+      - 6379:6379
+    volumes:
+      - .data/redis:/root/redis
